@@ -9,6 +9,7 @@ VERSION = json.loads((ROOT / 'package.json').read_text())['version']
 FILES = [
     'plugin.json', 'package.json', 'main.py', 'py_modules/gpu_reset.py',
     'dist/index.js', 'dist/index.js.map', 'README.md', 'README.ru.md', 'LICENSE',
+    'THIRD_PARTY.md', 'licenses/decky-api-LGPL-2.1.txt', 'licenses/react-icons.txt',
 ]
 
 

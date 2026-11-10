@@ -45,7 +45,7 @@
 ## Установка и удаление
 
 1. На уже настроенной PS5 Linux установите [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader).
-2. В [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) скачайте из Assets **`ps5-quiet-v1.0.0.zip`**.
+2. В [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) скачайте из Assets **`ps5-quiet-v1.0.1.zip`**.
    Автоматические архивы GitHub «Source code» предназначены для разработки, не установки.
 3. В настройках Decky включите режим разработчика, если он выключен.
    В разделе **Developer / Разработчик** выберите установку плагина из ZIP,
@@ -82,3 +82,5 @@ python3 scripts/package.py
 
 Основан на официальном [Decky plugin template](https://github.com/SteamDeckHomebrew/decky-plugin-template).
 Использует API 1 и официальный `@decky/api` / `@decky/ui`.
+
+[Лицензии сторонних компонентов](THIRD_PARTY.md).

@@ -23,7 +23,7 @@ Requires the PS5 kernel interface at `/sys/class/devfreq/ps5-gpufreq` and Decky 
 ## Install
 
 1. Install [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader) on your existing PS5 Linux setup.
-2. Open [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) and download **`ps5-quiet-v1.0.0.zip`** from Assets. GitHub's automatic “Source code” archives are for development, not installation.
+2. Open [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) and download **`ps5-quiet-v1.0.1.zip`** from Assets. GitHub's automatic “Source code” archives are for development, not installation.
 3. In Decky settings, enable Developer Mode if needed. Under **Developer**, choose **Install Plugin from ZIP File**, select the downloaded ZIP and accept Decky's third-party plugin prompt. The plugin requires root access to write the GPU frequency interface.
 4. Close the game, open **Decky → PS5 Quiet**, press **«Утихомирить фаны»**, and allow a short time for the temperature and fan response. Repeated presses have a ten-second cooldown.
 
@@ -56,3 +56,5 @@ When reporting an issue, include the PS5 model, distro/kernel and Decky versions
 ## License and credits
 
 BSD-3-Clause. Based on the official [Decky plugin template](https://github.com/SteamDeckHomebrew/decky-plugin-template), using `@decky/api` and `@decky/ui`. See [LICENSE](LICENSE).
+
+[Third-party licenses](THIRD_PARTY.md).

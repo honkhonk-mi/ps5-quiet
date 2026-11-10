@@ -1,6 +1,6 @@
 {
   "name": "ps5-quiet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "One-button PS5 GPU clock reapply for the hot-idle workaround",
   "type": "module",
   "scripts": {
