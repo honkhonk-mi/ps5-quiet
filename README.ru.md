@@ -18,7 +18,7 @@
 
 ## Проверенная система
 
-Оригинальная PS5, PS5 Bazzite Deck v2.7.3, ядро 7.3.1-viva, Decky Loader v3.3.1.
+PS5 Slim, PS5 Bazzite Deck v2.7.3, ядро 7.3.1-viva, Decky Loader v3.3.1.
 В одной проверке на рабочем столе температура снизилась с 63,5 до примерно
 49–52 °C за следующие 30 секунд, а PWM вентилятора — с 43 до 24–25%.
 Это результат на одной консоли, а не гарантия для всех моделей и ядер.
@@ -45,7 +45,7 @@
 ## Установка и удаление
 
 1. На уже настроенной PS5 Linux установите [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader).
-2. В [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) скачайте из Assets **`ps5-quiet-v1.0.1.zip`**.
+2. В [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) скачайте из Assets **`ps5-quiet-v1.0.2.zip`**.
    Автоматические архивы GitHub «Source code» предназначены для разработки, не установки.
 3. В настройках Decky включите режим разработчика, если он выключен.
    В разделе **Developer / Разработчик** выберите установку плагина из ZIP,

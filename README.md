@@ -16,14 +16,14 @@ This is an experimental workaround for an observed driver state, not a universal
 
 ## Compatibility and observed result
 
-Tested on one original PS5 running **PS5 Bazzite Deck v2.7.3, kernel 7.3.1-viva and Decky Loader v3.3.1**, with CoolerControl active. In one idle check the temperature fell from **63.5 °C to approximately 49–52 °C** over the following 30 seconds, and fan PWM fell from **43% to 24–25%**. The original minimum and maximum GPU settings were preserved. Other models and kernels have not been verified.
+Tested on one PS5 Slim running **PS5 Bazzite Deck v2.7.3, kernel 7.3.1-viva and Decky Loader v3.3.1**, with CoolerControl active. In one idle check the temperature fell from **63.5 °C to approximately 49–52 °C** over the following 30 seconds, and fan PWM fell from **43% to 24–25%**. The original minimum and maximum GPU settings were preserved. Other models and kernels have not been verified.
 
 Requires the PS5 kernel interface at `/sys/class/devfreq/ps5-gpufreq` and Decky Loader with API 1 support. This is not for stock PS5 firmware or ordinary Steam Deck hardware. Missing interfaces are reported as unsupported.
 
 ## Install
 
 1. Install [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader) on your existing PS5 Linux setup.
-2. Open [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) and download **`ps5-quiet-v1.0.1.zip`** from Assets. GitHub's automatic “Source code” archives are for development, not installation.
+2. Open [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) and download **`ps5-quiet-v1.0.2.zip`** from Assets. GitHub's automatic “Source code” archives are for development, not installation.
 3. In Decky settings, enable Developer Mode if needed. Under **Developer**, choose **Install Plugin from ZIP File**, select the downloaded ZIP and accept Decky's third-party plugin prompt. The plugin requires root access to write the GPU frequency interface.
 4. Close the game, open **Decky → PS5 Quiet**, press **«Утихомирить фаны»**, and allow a short time for the temperature and fan response. Repeated presses have a ten-second cooldown.
 
