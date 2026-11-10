@@ -1,0 +1,16 @@
+{
+  "name": "PS5 Quiet",
+  "author": "honkhonk-mi",
+  "flags": [
+    "root"
+  ],
+  "api_version": 1,
+  "publish": {
+    "tags": [
+      "ps5",
+      "gpu"
+    ],
+    "description": "Reapply the PS5 GPU minimum clock to work around hot idle while preserving cooling settings.",
+    "image": ""
+  }
+}
