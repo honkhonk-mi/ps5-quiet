@@ -6,7 +6,7 @@ A Decky Loader button for a PS5 Linux hot-idle workaround: briefly reapply the G
 
 ## What it does
 
-Press **Decky → PS5 Quiet → «Утихомирить фаны»** (“Quiet the fans”). The current interface is in Russian; it displays temperature and the fan PWM percentage, not RPM.
+Press **Decky → PS5 Quiet → Quiet the fans**. The interface is in English and displays temperature and the fan PWM percentage, not RPM.
 
 The plugin raises the minimum GPU clock by one supported step for two seconds, then restores the original minimum. On the tested system that is **500 → 625 → 500 MHz**. The next step is selected from the driver's available frequencies and cannot exceed the current maximum. A locked frequency range or reported GPU load blocks the operation.
 
@@ -23,9 +23,9 @@ Requires the PS5 kernel interface at `/sys/class/devfreq/ps5-gpufreq` and Decky 
 ## Install
 
 1. Install [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader) on your existing PS5 Linux setup.
-2. Open [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) and download **`ps5-quiet-v1.0.2.zip`** from Assets. GitHub's automatic “Source code” archives are for development, not installation.
+2. Open [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) and download **`ps5-quiet-v1.0.3.zip`** from Assets. GitHub's automatic “Source code” archives are for development, not installation.
 3. In Decky settings, enable Developer Mode if needed. Under **Developer**, choose **Install Plugin from ZIP File**, select the downloaded ZIP and accept Decky's third-party plugin prompt. The plugin requires root access to write the GPU frequency interface.
-4. Close the game, open **Decky → PS5 Quiet**, press **«Утихомирить фаны»**, and allow a short time for the temperature and fan response. Repeated presses have a ten-second cooldown.
+4. Close the game, open **Decky → PS5 Quiet**, press **Quiet the fans**, and allow a short time for the temperature and fan response. Repeated presses have a ten-second cooldown.
 
 You can also paste the release asset's direct download link into Decky's **Install Plugin from URL** field.
 

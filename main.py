@@ -20,7 +20,7 @@ class Plugin:
 
     async def get_status(self):
         if self.controller is None:
-            return {'supported': False, 'ready': False, 'reason': 'Плагин запускается…'}
+            return {'supported': False, 'ready': False, 'reason': 'Plugin is starting…'}
         result = await asyncio.to_thread(self.controller.status)
         if self.startup_error:
             result.update(ready=False, reason=self.startup_error)
@@ -28,9 +28,9 @@ class Plugin:
 
     async def quiet_gpu(self):
         if self.controller is None:
-            return {'ok': False, 'error': 'Плагин ещё запускается.'}
+            return {'ok': False, 'error': 'The plugin is still starting.'}
         if self.operation is not None and not self.operation.done():
-            return {'ok': False, 'error': 'Сброс уже выполняется.'}
+            return {'ok': False, 'error': 'A reset is already in progress.'}
         self.operation = asyncio.create_task(asyncio.to_thread(self.controller.reset))
         try:
             result = await asyncio.shield(self.operation)

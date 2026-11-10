@@ -76,13 +76,13 @@ class GPUResetTests(unittest.TestCase):
 
     def test_external_clock_change_is_not_overwritten(self):
         self.controller.sleep = lambda _: (self.gpu / 'min_freq').write_text('750000000')
-        with self.assertRaisesRegex(ResetError, 'другое приложение'):
+        with self.assertRaisesRegex(ResetError, 'Another application'):
             self.controller.reset()
         self.assertEqual(self.minimum(), 750000000)
 
     def test_busy_gpu_rejected_without_any_write(self):
         (self.gpu / 'cur_freq').write_text('2230000000')
-        with self.assertRaisesRegex(ResetError, 'под нагрузкой'):
+        with self.assertRaisesRegex(ResetError, 'GPU is busy'):
             self.controller.reset()
         self.assertEqual(self.minimum(), 500000000)
         self.assertFalse(self.controller._pending().exists())
@@ -90,7 +90,7 @@ class GPUResetTests(unittest.TestCase):
     def test_locked_gpu_rejected(self):
         (self.gpu / 'max_freq').write_text('500000000')
         self.assertFalse(self.controller.status()['ready'])
-        with self.assertRaisesRegex(ResetError, 'зафиксирована'):
+        with self.assertRaisesRegex(ResetError, 'frequency is locked'):
             self.controller.reset()
         self.assertEqual(self.minimum(), 500000000)
 
@@ -127,7 +127,7 @@ class GPUResetTests(unittest.TestCase):
     def test_cooldown_blocks_repeated_resets(self):
         self.controller.reset()
         self.assertFalse(self.controller.status()['ready'])
-        with self.assertRaisesRegex(ResetError, 'Подождите'):
+        with self.assertRaisesRegex(ResetError, 'Please wait'):
             self.controller.reset()
 
 

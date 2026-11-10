@@ -57,7 +57,7 @@ class GPUReset:
             fcntl.flock(handle, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
             handle.close()
-            raise ResetError('Сброс уже выполняется. Подождите несколько секунд.')
+            raise ResetError('A reset is already in progress. Please wait a few seconds.')
         return handle
 
     def _restore_pending(self):
@@ -72,19 +72,19 @@ class GPUReset:
         frequencies = self._frequencies()
         if (type(original) is not int or type(pulse) is not int or
                 original < 0 or original > frequencies[-1] or pulse not in frequencies):
-            raise ResetError('Повреждены данные возврата частоты. Сброс остановлен.')
+            raise ResetError('The frequency recovery record is invalid. Reset stopped.')
         current = self._read('min_freq')
         if current == pulse:
             maximum = self._read('max_freq') or frequencies[-1]
             if self._effective(original) > maximum:
-                raise ResetError('Лимит GPU изменился. Не удалось вернуть прежний минимум.')
+                raise ResetError('The GPU limit has changed. Could not restore the previous minimum.')
             self._write_min(original)
             if self._effective(self._read('min_freq')) != self._effective(original):
-                raise ResetError('Драйвер не подтвердил возврат частоты GPU.')
+                raise ResetError('The driver did not confirm restoration of the GPU minimum.')
         elif self._effective(current) != self._effective(original):
             # A different controller changed the minimum: its setting wins.
             pending.unlink()
-            raise ResetError('Настройки GPU изменило другое приложение. Его значение сохранено.')
+            raise ResetError('Another application changed the GPU settings. Its value has been preserved.')
         pending.unlink()
         return True
 
@@ -116,17 +116,17 @@ class GPUReset:
             cooldown = max(0, 10 - (time.monotonic() - self.last_finished)) if self.last_finished else 0
             result['cooldown_seconds'] = int(cooldown + 0.99)
             if self.guard.locked():
-                result['reason'] = 'Сброс выполняется…'
+                result['reason'] = 'Reset in progress…'
             elif pulse is None:
-                result['reason'] = 'Частота GPU зафиксирована. Верните автоматический режим в PS5 Hardware Control.'
+                result['reason'] = 'The GPU frequency is locked. Restore automatic mode in PS5 Hardware Control.'
             elif current > (low or frequencies[0]) + 25_000_000:
-                result['reason'] = 'GPU под нагрузкой. Закройте игру и повторите в меню Steam.'
+                result['reason'] = 'The GPU is busy. Close the game and try again from the Steam menu.'
             elif cooldown > 0:
-                result['reason'] = 'Можно повторить через несколько секунд.'
+                result['reason'] = 'You can try again in a few seconds.'
             else:
                 result['ready'] = True
         except (OSError, ValueError, IndexError):
-            result['reason'] = 'Управление GPU этой PS5 недоступно.'
+            result['reason'] = 'GPU controls are unavailable on this PS5.'
         try:
             result['last_reset'] = json.loads((self.runtime / 'last.json').read_text())
         except (OSError, ValueError):
@@ -135,29 +135,29 @@ class GPUReset:
 
     def reset(self):
         if not self.guard.acquire(blocking=False):
-            raise ResetError('Сброс уже выполняется.')
+            raise ResetError('A reset is already in progress.')
         try:
             with self._lock():
                 self._restore_pending()
                 if (self.gpu / 'name').read_text().strip() != 'ps5-gpufreq':
-                    raise ResetError('Это не поддерживаемый GPU PS5.')
+                    raise ResetError('This is not a supported PS5 GPU.')
                 frequencies = self._frequencies()
                 original, maximum, current = (self._read(n) for n in ('min_freq', 'max_freq', 'cur_freq'))
                 minimum = original or frequencies[0]
                 pulse = next((f for f in frequencies if minimum < f <= (maximum or frequencies[-1])), None)
                 if pulse is None:
-                    raise ResetError('Частота GPU зафиксирована. Верните автоматический режим.')
+                    raise ResetError('The GPU frequency is locked. Restore automatic mode.')
                 if current > minimum + 25_000_000:
-                    raise ResetError('GPU под нагрузкой. Закройте игру и повторите в меню Steam.')
+                    raise ResetError('The GPU is busy. Close the game and try again from the Steam menu.')
                 if self.last_finished and time.monotonic() - self.last_finished < 10:
-                    raise ResetError('Подождите несколько секунд перед повторным сбросом.')
+                    raise ResetError('Please wait a few seconds before resetting again.')
                 state = {'boot_id': self.boot_id.read_text().strip(), 'original_min': original,
                          'pulse': pulse, 'original_max': maximum, 'time': int(time.time())}
                 self._save('pending.json', state)
                 try:
                     self._write_min(pulse)
                     if self._read('min_freq') != pulse:
-                        raise ResetError('Драйвер не подтвердил временную частоту GPU.')
+                        raise ResetError('The driver did not confirm the temporary GPU minimum.')
                     self.sleep(2.0)
                 finally:
                     self._restore_pending()

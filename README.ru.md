@@ -2,7 +2,7 @@
 
 [English](README.md) · [Скачать](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) · [Сообщить о проблеме](https://github.com/honkhonk-mi/ps5-quiet/issues)
 
-Кнопка **«Утихомирить фаны»** для Decky Loader на PS5 Linux.
+Кнопка **Quiet the fans («Утихомирить фаны»)** для Decky Loader на PS5 Linux.
 
 Откройте **Decky → PS5 Quiet** в меню Steam при закрытой игре и нажмите кнопку.
 Она повторяет проверенный на этой консоли приём: кратко повышает минимальную
@@ -23,7 +23,7 @@ PS5 Slim, PS5 Bazzite Deck v2.7.3, ядро 7.3.1-viva, Decky Loader v3.3.1.
 49–52 °C за следующие 30 секунд, а PWM вентилятора — с 43 до 24–25%.
 Это результат на одной консоли, а не гарантия для всех моделей и ядер.
 Значение вентилятора — процент PWM, не обороты в минуту.
-Интерфейс версии 1.0.0 на русском языке.
+Начиная с версии 1.0.3 интерфейс и сообщения на английском языке.
 
 Нужен драйвер с `/sys/class/devfreq/ps5-gpufreq` и Decky с поддержкой API 1.
 Плагин предназначен для PS5 Linux; на штатной системе PS5 он не работает.
@@ -45,13 +45,13 @@ PS5 Slim, PS5 Bazzite Deck v2.7.3, ядро 7.3.1-viva, Decky Loader v3.3.1.
 ## Установка и удаление
 
 1. На уже настроенной PS5 Linux установите [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader).
-2. В [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) скачайте из Assets **`ps5-quiet-v1.0.2.zip`**.
+2. В [Releases](https://github.com/honkhonk-mi/ps5-quiet/releases/latest) скачайте из Assets **`ps5-quiet-v1.0.3.zip`**.
    Автоматические архивы GitHub «Source code» предназначены для разработки, не установки.
 3. В настройках Decky включите режим разработчика, если он выключен.
    В разделе **Developer / Разработчик** выберите установку плагина из ZIP,
    укажите скачанный архив и подтвердите запрос Decky. Плагину нужен доступ
    root для изменения минимальной частоты GPU.
-4. Закройте игру, откройте **Decky → PS5 Quiet → «Утихомирить фаны»**.
+4. Закройте игру, откройте **Decky → PS5 Quiet → Quiet the fans**.
    Подождите снижения температуры и реакции вентилятора. Между сбросами есть
    пауза в десять секунд.
 
